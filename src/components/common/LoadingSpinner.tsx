@@ -1,0 +1,46 @@
+import React from 'react';
+import { Box, CircularProgress } from '@mui/material';
+
+interface LoadingSpinnerProps {
+    size?: number;
+    fullScreen?: boolean;
+}
+
+export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
+    size = 40,
+    fullScreen = false,
+}) => {
+    if (fullScreen) {
+        return (
+            <Box
+                sx={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    zIndex: 9999,
+                }}
+            >
+                <CircularProgress size={size} />
+            </Box>
+        );
+    }
+
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 3,
+            }}
+        >
+            <CircularProgress size={size} />
+        </Box>
+    );
+}; 
