@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    CSP: allow Spotify SDK and API, block everything else.
+    'unsafe-inline' on script-src is required by Electron renderer until
+    you set up a nonce-based system.
+  -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https://sdk.scdn.co https://api.spotify.com https://accounts.spotify.com;
+             script-src 'self' https://sdk.scdn.co 'unsafe-inline';
+             style-src 'self' 'unsafe-inline';
+             img-src 'self' data: https://i.scdn.co https://mosaic.scdn.co;
+             connect-src 'self' https://api.spotify.com https://accounts.spotify.com;">
+  <title>ADHD DJ</title>
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Auth screen (shown before login) -->
+    <div id="auth-screen" class="auth-screen">
+      <div class="auth-card">
+        <h1 class="app-title">ADHD DJ</h1>
+        <p class="auth-tagline">Spotify · 8D Audio · DJ Decks</p>
+        <button id="login-btn" class="btn btn-primary btn-large">Connect Spotify</button>
+        <p class="auth-note">Requires Spotify Premium</p>
+      </div>
+    </div>
+
+    <!-- Main app screen (shown after login) -->
+    <div id="main-screen" style="display:none">
+      <header class="app-header">
+        <span class="app-title-sm">ADHD DJ</span>
+        <div class="header-actions">
+          <span id="user-name" class="user-name"></span>
+          <button id="logout-btn" class="btn btn-ghost btn-sm">Logout</button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <!-- Player panel -->
+        <section id="player-panel" class="panel player-panel" aria-label="Now Playing"></section>
+
+        <!-- Centre column: 8D effect + search -->
+        <section class="centre-column">
+          <div id="effect-panel" class="panel effect-panel" aria-label="8D Effect"></div>
+          <div id="search-panel" class="panel search-panel" aria-label="Search"></div>
+        </section>
+
+        <!-- DJ decks panel -->
+        <section id="dj-panel" class="panel dj-panel" aria-label="DJ Decks"></section>
+      </main>
+
+      <!-- Status bar -->
+      <footer class="status-bar">
+        <span id="status-msg" class="status-msg" role="status" aria-live="polite"></span>
+        <span id="capture-status" class="capture-badge" title="Audio capture status"></span>
+      </footer>
+    </div>
+
+  </div>
+
+  <!-- Spotify Web Playback SDK — must load before renderer JS -->
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>

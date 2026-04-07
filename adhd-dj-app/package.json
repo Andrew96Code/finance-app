@@ -1,0 +1,26 @@
+{
+  "name": "adhd-dj-app",
+  "version": "0.1.0",
+  "description": "ADHD-friendly desktop DJ app with Spotify integration and 8D audio effects",
+  "main": "main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "tone": "^14.9.17"
+  },
+  "devDependencies": {
+    "electron": "^29.4.6"
+  },
+  "keywords": [
+    "electron",
+    "spotify",
+    "dj",
+    "8d-audio",
+    "adhd"
+  ],
+  "author": "",
+  "license": "MIT"
+}
